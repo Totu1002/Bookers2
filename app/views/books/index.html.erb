@@ -19,6 +19,16 @@
 
 <!-- 以下の機能はテンプレート化する -->
 <!-- バリデーションチェック -->
+<% if @book.errors.any? %>
+  <div id="error_explanation">
+    <h2>error</h2>
+    <ul style="color: red">
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <!-- 投稿フォーム -->
 <h2>New book</h2>
