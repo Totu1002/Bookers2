@@ -1,0 +1,25 @@
+<h2>User info</h2>
+<p>IMG</p>
+<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+<p>User ID: <%= @user.id %></p>
+<table>
+  <!--<thead>
+    <tr>
+      <th>header</th>
+    </tr>
+  </thead>-->
+  <tbody>
+    <tr>
+      <th>name:</th>
+      <th><%= @user.name %></th>
+    </tr>
+    <tr>
+      <th>introduction:</th>
+      <th><%= @user.introduction %></th>
+    </tr>
+  </tbody>
+</table>
+<% if @user.id == current_user.id %>
+  <p><%= link_to "Edit", edit_user_path(@user) %></p>
+<% end %>
+

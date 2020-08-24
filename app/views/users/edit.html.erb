@@ -1,0 +1,21 @@
+<h2>User info</h2>
+<%= form_for(@user) do |f| %>
+  <div class="form-group has-icon">
+    <table>
+      <tbody>
+        <tr>
+          <th>Name</th>
+          <th><%= f.text_field :name, autofocus: true %></th>
+        </tr>
+        <tr>
+          <th>Image</th>
+          <th><%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %></th>
+        </tr>
+        <tr>
+          <th>Introduction</th>
+          <th><%= f.text_area :introduction, autofocus: true %></th>
+        </tr>
+      </tbody>
+    </table>
+  <%= f.submit "Update User" %>
+<% end %>

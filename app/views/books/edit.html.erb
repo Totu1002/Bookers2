@@ -1,0 +1,17 @@
+<h1>Editing Book</h1>
+
+<!-- バリデーションチェック -->
+
+
+<%= form_for(@book) do |f| %>
+  <p>Title</p>
+  <%= f.text_field :title %>
+
+  <p>Opinion</p>
+  <%= f.text_area :body %><br>
+
+  <%= f.submit 'Update Book' %>
+<% end %>
+<%= link_to "Show", book_path(@book.id),:style => "color:black" %>
+|
+<%= link_to "Back", books_path,:style => "color:black" %>

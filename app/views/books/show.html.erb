@@ -1,0 +1,23 @@
+
+<h2>Book detail</h2>
+<% if flash[:notice] %>
+  <p id="notice"><%= flash[:notice] %></p>
+<% end %>
+<table>
+    <thead>
+  <tr>
+    <th colspan="4"></th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Title:<%= @book.title %></td>
+      <td>Body:<%= @book.body %></td>
+      <!-- ログインユーザのみ削除可能 -->
+      <% if @book.user == current_user %>
+        <td><%= link_to "Edit", edit_book_path(@book.id),:style => "color:black" %></td>
+        <td><%= link_to "Destroy", book_path(@book.id),method: :delete,   data: { confirm: "Are you sure?" },:style => "color:black" %></td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>

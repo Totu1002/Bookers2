@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <div id="slidemenu">
+      <h2>Bookers</h2>
+      <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
+        <% if user_signed_in? %>
+          <li class="">
+            <a href="/users/<%= current_user.id %>">Home</a>
+          </li>
+          <li class="">
+            <!-- users/index = users_path -->
+            <%= link_to "Users", "#" %>
+          </li>
+          <!-- books/index = _path -->
+          <li class="">
+            <%= link_to "Books", books_path %>
+          </li>
+          <li class="">
+            <%= link_to "Logout", "#", method: :delete %>
+        <% else %>
+          <!-- top -->
+          <li class="">
+            <%= link_to 'Home', "#" %>
+          </li>
+          <!-- about -->
+          <li class="">
+            <%= link_to "Abut", "#" %>
+          </li>
+          <!---->
+          <li class="">
+            <%= link_to "sign up", "#" %>
+          </li>
+          <!---->
+          <li class="">
+            <%= link_to "login", "#", method: :delete %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
