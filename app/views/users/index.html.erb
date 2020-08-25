@@ -1,9 +1,8 @@
-<% if flash[:notice] %>
-  <p id="notice"><%= flash[:notice] %></p>
-<% end %>
+
 <div class="container">
   <div class="row">
     <div class="col-lg-4">
+      <!-- sidebar -->
       <h2>User info</h2>
       <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
       <table class="table">
@@ -26,8 +25,6 @@
       <% if @user.id == current_user.id %>
         <p><%= link_to "Edit", edit_user_path(@user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %></p>
       <% end %>
-      
-      <!-- 投稿フォーム -->
       <h2>New book</h2>
       <%= form_for(@new) do |f| %>
       
@@ -41,24 +38,28 @@
       <% end %>
     </div>
     <div class="col-lg-8">
-      <h2>Book detail</h2>
+      <h2>Users</h2>
       <table class="table table-striped">
         <thead>
           <tr>
-            <th colspan="4"></th>
+            <th>image</th>
+            <th>name</th>
+            <th colspan="3"></th>
           </tr>
         </thead>
         <tbody>
+          <% @users.each do |user| %>
             <tr>
-              <td>Title:<%= @book.title %></td>
-              <td>Body:<%= @book.body %></td>
-              <% if @book.user == current_user %>
-                <td><%= link_to "Edit", edit_book_path(@book.id) %></td>
-                <td><%= link_to "Destroy", book_path(@book.id),method: :delete,   data: { confirm: "Are you sure?" } %></td>
-              <% end %>
+            <!-- userの画像表示 -->
+            <td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></td>
+            <td><%= user.name %></td>
+            <td><%= user.introduction %></td>
+            <td><%= link_to 'show', user_path(user.id) %></td>
             </tr>
+          <% end %>
         </tbody>
       </table>
     </div>
   </div>
 </div>
+

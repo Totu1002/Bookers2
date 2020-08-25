@@ -1,30 +1,31 @@
 class UsersController < ApplicationController
-   before_action :authenticate_user!
+  before_action :authenticate_user!
 
-   def new
-     @user = User.new
-   end
+  def new
+    @user = User.new
+  end
 
-   def create
-     @user = User.new(user_params)
-     @user.user_id = current_user.id
-     @user.save
-     redirect_to user_path
-   end
+  def create
+    @user = User.new(user_params)
+    @user.user_id = current_user.id
+    @user.save
+    redirect_to user_path
+  end
+
+  def index
+    #これでいけるか？
+    @user = User.find(current_user.id)
+
+    @users = User.all
+    @new = Book.new
+  end
 
   def show
     @user = User.find(params[:id])
-
     #ここにBookからの情報を記載
-    #.allだと正常に全ての投稿を表示できる...
-    #@books = Book.all
-
-    #error原因はおそらく正常にデータを渡せていないから？
-    #@books = @user.books.page(params[:page]).reverse_order
-    @books = @user.book.page(params[:page]).reverse_order
-
-    #@books = current_user.books
-    #@user = User.find(id: @books.user_id)
+    @books = @user.book.page(params[:page])
+    #これで行けるか？
+    @new = Book.new
   end
 
   def edit
