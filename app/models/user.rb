@@ -4,12 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :book, dependent: :destroy
+  has_many :books, dependent: :destroy
+
   #プロフィール画像設定用
   attachment :profile_image
 
-  #validates :name, {presence: true}
   #validates :email, {presence: true, uniqueness: true}
   # passwordカラムにバリデーションを設定してください
   #validates :password, {presence: true}
+  validates :name, presence: true, length: {minimum: 2,maximum: 20}
+  validates :introduction, length: {maximum: 50}
 end

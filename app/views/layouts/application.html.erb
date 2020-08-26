@@ -8,49 +8,54 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <div class="container">
-      <div id="slidemenu">
-        <nav class="nav navbar-nav navbar-left">
-          <span><h2>Bookers</h2></span>
-        </nav>
-        <ul class="nav navbar-nav navbar-right">
-          <% if user_signed_in? %>
-            <li class="">
-              <%= link_to 'Home', user_path(current_user.id), class: "glyphicon glyphicon-home home" %>
-            </li>
-            <li class="">
-              <!-- users/index = users_path -->
-              <%= link_to "Users", users_path, class: "glyphicon glyphicon-user users" %>
-            </li>
-            <!-- books/index = _path -->
-            <li class="">
-              <%= link_to "Books", books_path, class: "glyphicon glyphicon-book books" %>
-            </li>
-            <li class="">
-              <%= link_to "Logout", destroy_user_session_path, class: "glyphicon glyphicon-log-out logout", method: :delete %>
-            </li>
-          <% else %>
-            <!-- 以下のPATH未実装!! -->
-            <!-- top -->
-            <li class="">
-              <%= link_to 'Home', class: "glyphicon glyphicon-home home" %>
-            </li>
-            <!-- about -->
-            <li class="">
-              <%= link_to "Abut", class: "glyphicon glyphicon-link about" %>
-            </li>
-            <!---->
-            <li class="">
-              <%= link_to "sign up", class: "glyphicon glyphicon-edit sign_up" %>
-            </li>
-            <!---->
-            <li class="">
-              <%= link_to "login", class: "glyphicon glyphicon-log-in sign_in" %>
-            </li>
-          <% end %>
-        </ul>
+    <header>
+      <div class="container">
+        <div id="slidemenu">
+          <nav class="nav navbar-nav navbar-left">
+            <span><h2>Bookers</h2></span>
+          </nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <!-- login時header -->
+              <li class="">
+                <%= link_to 'Home', user_path(current_user.id), class: "glyphicon glyphicon-home home" %>
+              </li>
+              <li class="">
+                <!-- users/index = users_path -->
+                <%= link_to "Users", users_path, class: "glyphicon glyphicon-user users" %>
+              </li>
+              <!-- books/index = _path -->
+              <li class="">
+                <%= link_to "Books", books_path, class: "glyphicon glyphicon-book books" %>
+              </li>
+              <li class="">
+                <%= link_to "Logout", destroy_user_session_path, class: "glyphicon glyphicon-log-out logout", method: :delete %>
+              </li>
+            <% else %>
+              <!-- logout時header -->
+              <!-- top -->
+              <li class="">
+                <%= link_to 'Home', root_path, class: "glyphicon glyphicon-home home" %>
+              </li>
+              <!-- about -->
+              <li class="">
+                <%= link_to "About", home_about_path, class: "glyphicon glyphicon-link about" %>
+              </li>
+              <!---->
+              <li class="">
+                <%= link_to "Sign up", new_user_registration_path, class: "glyphicon glyphicon-edit sign_up" %>
+              </li>
+              <!---->
+              <li class="">
+                <%= link_to "login", new_user_session_path, class: "glyphicon glyphicon-log-in sign_in" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
-    </div>
+    </header>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
     <footer>
       <div class="container">

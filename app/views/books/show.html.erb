@@ -3,7 +3,7 @@
 <% end %>
 <div class="container">
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-xs-3">
       <h2>User info</h2>
       <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
       <table class="table">
@@ -40,7 +40,7 @@
         <%= f.submit 'Create Book' %>
       <% end %>
     </div>
-    <div class="col-lg-8">
+    <div class="col-xs-9">
       <h2>Book detail</h2>
       <table class="table table-striped">
         <thead>
@@ -50,11 +50,12 @@
         </thead>
         <tbody>
             <tr>
-              <td>Title:<%= @book.title %></td>
-              <td>Body:<%= @book.body %></td>
+              <td><a href=<%= user_path(@book.user_id) %>><%= attachment_image_tag @book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></a><br><%= link_to @book.id,user_path(@book.user_id) %></td>
+              <td><%=link_to @book.title,book_path(@book.id) %></td>
+              <td><%= @book.body %></td>
               <% if @book.user == current_user %>
                 <td><%= link_to "Edit", edit_book_path(@book.id) %></td>
-                <td><%= link_to "Destroy", book_path(@book.id),method: :delete,   data: { confirm: "Are you sure?" } %></td>
+                <td><%= link_to "Destroy", book_path(@book.id),method: :delete, data: { confirm: "Are you sure?" } %></td>
               <% end %>
             </tr>
         </tbody>

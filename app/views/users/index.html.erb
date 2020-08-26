@@ -1,7 +1,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-xs-3">
       <!-- sidebar -->
       <h2>User info</h2>
       <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
@@ -25,19 +25,21 @@
       <% if @user.id == current_user.id %>
         <p><%= link_to "Edit", edit_user_path(@user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %></p>
       <% end %>
+
       <h2>New book</h2>
       <%= form_for(@new) do |f| %>
-      
+
         <p>Title</p>
         <%= f.text_field :title %>
-      
+
         <p>Body</p>
         <%= f.text_area :body %><br>
-      
+
         <%= f.submit 'Create Book' %>
       <% end %>
     </div>
-    <div class="col-lg-8">
+    <div class="low">
+      <div class="col-xs-9">
       <h2>Users</h2>
       <table class="table table-striped">
         <thead>
@@ -54,11 +56,13 @@
             <td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></td>
             <td><%= user.name %></td>
             <td><%= user.introduction %></td>
-            <td><%= link_to 'show', user_path(user.id) %></td>
+            <!-- ここerror? -->
+            <td><%= link_to 'Show', user_path(user.id) %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
+      </div>
     </div>
   </div>
 </div>

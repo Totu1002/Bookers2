@@ -23,19 +23,29 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     #ここにBookからの情報を記載
-    @books = @user.book.page(params[:page])
+    @books = @user.books.page(params[:page])
     #これで行けるか？
     @new = Book.new
   end
 
   def edit
     @user = User.find(params[:id])
+    if @user == current_user
+      render "edit"
+    else
+      redirect_to user_path
+    end
   end
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user.id)
+    if @user.update(user_params)
+      flash[:notice] = "successfully."
+      redirect_to user_path(@user.id)
+    else
+      flash[:notice] = "error."
+      render :edit
+    end
   end
 
   private
