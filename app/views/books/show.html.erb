@@ -25,7 +25,7 @@
       </table>
       <div class="row">
         <% if @user.id == current_user.id %>
-         <p><%= link_to "", edit_user_path(@user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %></p>
+         <p><%= link_to "", user_path(@user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %></p>
         <% end %>
       </div>
       <!-- 投稿フォーム -->
