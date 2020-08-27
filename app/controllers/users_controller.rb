@@ -13,9 +13,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    #これでいけるか？
     @user = User.find(current_user.id)
-
     @users = User.all
     @new = Book.new
   end
@@ -24,7 +22,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     #ここにBookからの情報を記載
     @books = @user.books.page(params[:page])
-    #これで行けるか？
     @new = Book.new
   end
 
@@ -33,7 +30,7 @@ class UsersController < ApplicationController
     if @user == current_user
       render "edit"
     else
-      redirect_to user_path
+      redirect_to user_path(current_user.id)
     end
   end
 

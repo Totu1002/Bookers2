@@ -15,3 +15,16 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+div.field, div.actions {
+    margin-bottom: 10px;
+}
+
+.navbar-inverse {
+    background-color: #222;
+    border-color: #090909;
+}
+
+header {
+    color: white;
+}
