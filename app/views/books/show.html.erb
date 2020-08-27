@@ -54,7 +54,12 @@
         </thead>
         <tbody>
             <tr>
-              <td><a href=<%= user_path(@book.user_id) %>><%= attachment_image_tag @book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></a><br><%= link_to @book.user.name,user_path(@book.user_id) %></td>
+              <td>
+                <%= link_to user_path(@book.user_id) do %>
+                  <%= attachment_image_tag @book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %><br>
+                  <%= link_to @book.user.name,user_path(@book.user_id) %>
+                <% end %>
+              </td>
               <td><%=link_to @book.title,book_path(@book.id) %></td>
               <td><%= @book.body %></td>
               <% if @book.user == current_user %>
